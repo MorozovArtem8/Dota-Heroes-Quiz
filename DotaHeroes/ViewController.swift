@@ -4,6 +4,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet var buttonsCollection: [UIButton]!
     
     var currentQuestion = 0
     var correctAnswer = 0
@@ -20,7 +21,7 @@ class ViewController: UIViewController {
                 guard let self else {return}
                 self.heroesListNoIcon = heroes
                 self.heroesListNoIcon.shuffle()
-               
+                
                 self.heroesListNoIcon.forEach{hero in
                     let url = URL(string: "https://cdn.cloudflare.steamstatic.com\(hero.img)")
                     let data = try? Data(contentsOf: url!)
@@ -39,7 +40,7 @@ class ViewController: UIViewController {
             
             
         })
-       
+        
     }
     
     @IBAction func universalButtonTapped(_ sender: UIButton) {
@@ -58,7 +59,21 @@ class ViewController: UIViewController {
     
     func showQuestionOrResult() {
         if currentQuestion == heroesForQuiz.count - 1 {
-            //showresult
+            let alert = UIAlertController(title: "Этот раунд окончен", message: "Ваш результат \(correctAnswer)/\(heroesForQuiz.count)", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ОК", style: .default, handler: {_ in
+                self.currentQuestion = 0
+                self.correctAnswer = 0
+                self.heroesForQuiz = []
+                self.heroesListNoIcon.shuffle()
+                for i in 0...19 {
+                    self.heroesForQuiz.append(self.allHeroesDataModel[i])
+                }
+                self.imageView.image = self.heroesForQuiz[0].image
+                self.questionLabel.text = "\(self.currentQuestion + 1)/\(self.heroesForQuiz.count)"
+            })
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+            
         }else {
             currentQuestion += 1
             self.questionLabel.text = "\(self.currentQuestion + 1)/\(self.heroesForQuiz.count)"
@@ -67,10 +82,20 @@ class ViewController: UIViewController {
     }
     
     func showResult(isCorrect: Bool) {
+        if isCorrect {
+            correctAnswer += 1
+        }
         imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
         imageView.layer.borderWidth = 8
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        buttonsCollection.forEach{
+            $0.isEnabled = false
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.buttonsCollection.forEach{
+                $0.isEnabled = true
+            }
             self.imageView.layer.borderWidth = 0
             self.showQuestionOrResult()
         }

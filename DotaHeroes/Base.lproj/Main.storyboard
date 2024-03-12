@@ -176,6 +176,10 @@
                     <connections>
                         <outlet property="imageView" destination="nyJ-uM-kgX" id="kfv-Ck-Hgo"/>
                         <outlet property="questionLabel" destination="IuK-FU-3RX" id="oDC-lu-BVT"/>
+                        <outletCollection property="buttonsCollection" destination="5g5-VP-3pl" collectionClass="NSMutableArray" id="S8Z-fb-WyO"/>
+                        <outletCollection property="buttonsCollection" destination="KbM-tw-B9m" collectionClass="NSMutableArray" id="T9H-2N-h5L"/>
+                        <outletCollection property="buttonsCollection" destination="SQm-Oc-58n" collectionClass="NSMutableArray" id="S44-We-fxQ"/>
+                        <outletCollection property="buttonsCollection" destination="i7p-U3-2eA" collectionClass="NSMutableArray" id="G1q-g4-lfw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -6,15 +6,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet var buttonsCollection: [UIButton]!
     
+    var  loader: UIAlertController = UIAlertController()
+   
     var currentQuestion = 0
     var correctAnswer = 0
-    
     var allHeroesDataModel: [HeroesDataModel] = []
     var heroesListNoIcon = Heroes()
     var heroesForQuiz: [HeroesDataModel] = []
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loader = self.loader()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         ApiManager.shared.getHeroes(completion: { [weak self] heroes in
             DispatchQueue.main.async {
@@ -35,6 +42,7 @@ class ViewController: UIViewController {
                 self.imageView.image = self.heroesForQuiz[0].image
                 self.questionLabel.text = "\(self.currentQuestion + 1)/\(self.heroesForQuiz.count)"
                 print(self.heroesForQuiz[0].attribute)
+                self.stopLoader(loader: self.loader)
                 
             }
             
@@ -103,3 +111,20 @@ class ViewController: UIViewController {
     
 }
 
+extension UIViewController {
+    func loader() -> UIAlertController {
+        let alert = UIAlertController(title: nil, message: "Пожалуйста подождите", preferredStyle: .alert)
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 1, y: 10, width: 50, height: 50))
+        indicator.hidesWhenStopped = true
+        indicator.startAnimating()
+        indicator.style = .large
+        alert.view.addSubview(indicator)
+        present(alert, animated: true, completion: nil)
+        return alert
+    }
+    
+    func stopLoader(loader: UIAlertController) {
+        loader.dismiss(animated: true, completion: nil)
+    }
+    
+}

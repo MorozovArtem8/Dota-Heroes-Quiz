@@ -7,6 +7,7 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private var buttonsCollection: [UIButton]!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
    
     private var currentQuestionIndex = 0
@@ -26,6 +27,7 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLoader()
         questionFactory = QuestionFactory(delegateViewController: self, heroesLoader: HeroesLoader())
         questionFactory?.loadData()
       
@@ -36,6 +38,7 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
         currentQuestion = question
         let quizStepViewModel = convert(heroesDataModel: question)
         show(quizStepViewModel: quizStepViewModel)
+        hideLoader()
     }
     
     func didLoadDataFromServer() {
@@ -43,7 +46,15 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     }
     
     func didFailToLoadData(with error: any Error) {
-        
+        let alertModel = AlertModel(
+            title: "Ошибка",
+            message: "Что то пошло не так",
+            buttonText: "Попробовать снова",
+            completion: { [weak self] in
+            self?.questionFactory?.loadData()
+        })
+        let alertPresentor = AlertPresentror(viewController: self)
+        alertPresentor.show(alertModel: alertModel)
     }
     
     //MARK: IBAction
@@ -74,10 +85,10 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
            let alertModel = AlertModel(
             title: alertTitle,
             message: alertMessage,
-            buttonText: "Сыграть еще раз") { 
-                self.correctAnswer = 0
-                self.currentQuestionIndex = 0
-                self.questionFactory?.requestNextQuestion()
+            buttonText: "Сыграть еще раз") { [weak self] in
+                self?.correctAnswer = 0
+                self?.currentQuestionIndex = 0
+                self?.questionFactory?.requestNextQuestion()
             }
             let alertPresentor = AlertPresentror(viewController: self)
             alertPresentor.show(alertModel: alertModel)
@@ -116,6 +127,16 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
         let image = UIImage(data: heroesDataModel.image) ?? UIImage()
         
         return QuizStepViewModel(name: name, attribute: attribute, image: image)
+    }
+    
+    private func showLoader() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    private func hideLoader() {
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
     }
     
 }

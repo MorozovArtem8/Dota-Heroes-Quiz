@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC8271AF2BC2E48500246DD7 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8271AE2BC2E48500246DD7 /* AlertModel.swift */; };
+		AC8271B12BC2E4E400246DD7 /* AlertPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */; };
 		AC8AFB022BC278950069208D /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8AFB012BC278950069208D /* NetworkClient.swift */; };
 		AC8AFB042BC280FF0069208D /* QuizStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8AFB032BC280FF0069208D /* QuizStepViewModel.swift */; };
 		AC8AFB062BC281820069208D /* QuestionFactoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8AFB052BC281820069208D /* QuestionFactoryDelegate.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC8271AE2BC2E48500246DD7 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentor.swift; sourceTree = "<group>"; };
 		AC8AFB012BC278950069208D /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		AC8AFB032BC280FF0069208D /* QuizStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizStepViewModel.swift; sourceTree = "<group>"; };
 		AC8AFB052BC281820069208D /* QuestionFactoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 				AC9FC5972B9F0D73006B2DC5 /* HeroesDataApiModel.swift */,
 				AC9FC59C2B9F0EBB006B2DC5 /* HeroesDataModel.swift */,
 				AC8AFB032BC280FF0069208D /* QuizStepViewModel.swift */,
+				AC8271AE2BC2E48500246DD7 /* AlertModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -75,6 +80,7 @@
 				AC9FC59A2B9F0DFB006B2DC5 /* HeroesLoader.swift */,
 				AC8AFB052BC281820069208D /* QuestionFactoryDelegate.swift */,
 				AC8AFB092BC29A7B0069208D /* QuestionFactoryProtocol.swift */,
+				AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -214,9 +220,11 @@
 				AC9FC5882B9F0CF9006B2DC5 /* HeroesQuizViewController.swift in Sources */,
 				AC8AFB0A2BC29A7B0069208D /* QuestionFactoryProtocol.swift in Sources */,
 				AC9FC59B2B9F0DFB006B2DC5 /* HeroesLoader.swift in Sources */,
+				AC8271AF2BC2E48500246DD7 /* AlertModel.swift in Sources */,
 				AC8AFB042BC280FF0069208D /* QuizStepViewModel.swift in Sources */,
 				AC9FC59D2B9F0EBB006B2DC5 /* HeroesDataModel.swift in Sources */,
 				AC8AFB022BC278950069208D /* NetworkClient.swift in Sources */,
+				AC8271B12BC2E4E400246DD7 /* AlertPresentor.swift in Sources */,
 				AC8AFB062BC281820069208D /* QuestionFactoryDelegate.swift in Sources */,
 				AC9FC5842B9F0CF9006B2DC5 /* AppDelegate.swift in Sources */,
 				AC8AFB082BC284980069208D /* QuestionFactory.swift in Sources */,

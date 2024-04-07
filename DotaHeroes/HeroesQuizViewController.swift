@@ -8,11 +8,12 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private var buttonsCollection: [UIButton]!
     
-    private var  loader: UIAlertController = UIAlertController()
    
-    private var currentQuestion = 0
+    private var currentQuestionIndex = 0
     private let questionAmount = 10
     private var correctAnswer = 0
+    
+    private var currentQuestion: HeroesDataModel?
     
     private var questionFactory: QuestionFactoryProtocol?
   
@@ -32,6 +33,7 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     }
     //MARK: QuestionFactoryDelegate
     func didReceiveNextQuestion(question: HeroesDataModel) {
+        currentQuestion = question
         let quizStepViewModel = convert(heroesDataModel: question)
         show(quizStepViewModel: quizStepViewModel)
     }
@@ -44,53 +46,48 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
         
     }
     
-    func didFailToLoadImage(with error: any Error) {
-        
-    }
     //MARK: IBAction
     @IBAction func universalButtonTapped(_ sender: UIButton) {
-        //showResult(isCorrect: "all" == heroesForQuiz[currentQuestion].attribute)
+        showResult(isCorrect: "all" == currentQuestion?.attribute)
     }
     @IBAction func strengthButtonTapped(_ sender: UIButton) {
-        //showResult(isCorrect: "str" == heroesForQuiz[currentQuestion].attribute)
+        showResult(isCorrect: "str" == currentQuestion?.attribute)
     }
     @IBAction func agilityButtonTapped(_ sender: UIButton) {
-        //showResult(isCorrect: "agi" == heroesForQuiz[currentQuestion].attribute)
+        showResult(isCorrect: "agi" == currentQuestion?.attribute)
     }
     @IBAction func intellectButtonTapped(_ sender: UIButton) {
-        //showResult(isCorrect: "int" == heroesForQuiz[currentQuestion].attribute)
+        showResult(isCorrect: "int" == currentQuestion?.attribute)
     }
     
     //MARK: func
     
     private func show(quizStepViewModel: QuizStepViewModel) {
         imageView.image = quizStepViewModel.image
-        questionLabel.text = "\(currentQuestion + 1)/\(questionAmount)"
+        questionLabel.text = "\(currentQuestionIndex + 1)/\(questionAmount)"
     }
     
-//    private func showQuestionOrResult() {
-//        if currentQuestion == heroesForQuiz.count - 1 {
-//            let alert = UIAlertController(title: "Этот раунд окончен", message: "Ваш результат \(correctAnswer)/\(heroesForQuiz.count)", preferredStyle: .alert)
-//            let action = UIAlertAction(title: "ОК", style: .default, handler: {_ in
-//                self.currentQuestion = 0
-//                self.correctAnswer = 0
-//                self.heroesForQuiz = []
-//                self.allHeroesDataModel.shuffle()
-//                for i in 0...19 {
-//                    self.heroesForQuiz.append(self.allHeroesDataModel[i])
-//                }
-//                self.imageView.image = self.heroesForQuiz[0].image
-//                self.questionLabel.text = "\(self.currentQuestion + 1)/\(self.heroesForQuiz.count)"
-//            })
-//            alert.addAction(action)
-//            present(alert, animated: true, completion: nil)
-//            
-//        }else {
-//            currentQuestion += 1
-//            self.questionLabel.text = "\(self.currentQuestion + 1)/\(self.heroesForQuiz.count)"
-//            imageView.image = heroesForQuiz[currentQuestion].image
-//        }
-//    }
+    private func showQuestionOrResult() {
+        if currentQuestionIndex >= questionAmount - 1{
+            let alertMessage = correctAnswer == questionAmount ? "Поздравляем, вы ответили на 10 из 10!" : "Ваш результат \(correctAnswer) / \(questionAmount)"
+            let alertTitle = "Этот раунд окончен"
+           let alertModel = AlertModel(
+            title: alertTitle,
+            message: alertMessage,
+            buttonText: "Сыграть еще раз") { 
+                self.correctAnswer = 0
+                self.currentQuestionIndex = 0
+                self.questionFactory?.requestNextQuestion()
+            }
+            let alertPresentor = AlertPresentror(viewController: self)
+            alertPresentor.show(alertModel: alertModel)
+            
+        }else {
+            currentQuestionIndex += 1
+            self.questionLabel.text = "\(self.currentQuestionIndex + 1)/\(self.questionAmount)"
+            self.questionFactory?.requestNextQuestion()
+        }
+    }
     
     private func showResult(isCorrect: Bool) {
         if isCorrect {
@@ -103,12 +100,13 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
             $0.isEnabled = false
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else {return}
             self.buttonsCollection.forEach{
                 $0.isEnabled = true
             }
             self.imageView.layer.borderWidth = 0
-            //self.showQuestionOrResult()
+            self.showQuestionOrResult()
         }
     }
     

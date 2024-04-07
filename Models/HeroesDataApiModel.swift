@@ -36,6 +36,12 @@ struct HeroesData: Codable {
     let pubPickTrend: [Int]
     let pubWin: Int
     let pubWinTrend: [Int]
+    
+    var imageURL: URL? {
+        let urlString = "https://cdn.cloudflare.steamstatic.com\(img)"
+        guard let url = URL(string: urlString) else {return nil}
+        return url
+    }
 
     enum CodingKeys: String, CodingKey {
         case id, name

@@ -1,6 +1,6 @@
 import UIKit
 
-struct HeroesDataModel {
+struct QuizStepViewModel {
     let name: String
     let attribute: String
     let image: UIImage

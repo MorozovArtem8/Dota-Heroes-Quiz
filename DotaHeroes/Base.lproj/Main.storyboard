@@ -155,6 +155,9 @@
                                 <color key="textColor" name="YP White"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="deo-7I-V27">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black"/>
@@ -169,11 +172,14 @@
                             <constraint firstItem="EcW-2x-13C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="k37-VX-HYk"/>
                             <constraint firstItem="YEq-mJ-kgI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="m8H-Tx-wiD"/>
                             <constraint firstItem="EcW-2x-13C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="q3e-6w-FaV"/>
+                            <constraint firstItem="deo-7I-V27" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sai-yP-adH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YEq-mJ-kgI" secondAttribute="trailing" constant="20" id="vtR-lP-aRK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YEq-mJ-kgI" secondAttribute="bottom" constant="60" id="wJO-ut-AnU"/>
+                            <constraint firstItem="deo-7I-V27" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zfR-QA-yac"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="deo-7I-V27" id="Ua9-Vc-Wcf"/>
                         <outlet property="imageView" destination="nyJ-uM-kgX" id="kfv-Ck-Hgo"/>
                         <outlet property="questionLabel" destination="IuK-FU-3RX" id="oDC-lu-BVT"/>
                         <outletCollection property="buttonsCollection" destination="5g5-VP-3pl" collectionClass="NSMutableArray" id="S8Z-fb-WyO"/>

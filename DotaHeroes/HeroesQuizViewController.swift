@@ -1,7 +1,7 @@
 import UIKit
 
 final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate {
-  
+    
     
     
     @IBOutlet private weak var imageView: UIImageView!
@@ -9,7 +9,7 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     @IBOutlet private var buttonsCollection: [UIButton]!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-   
+    
     private var currentQuestionIndex = 0
     private let questionAmount = 10
     private var correctAnswer = 0
@@ -17,7 +17,8 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     private var currentQuestion: HeroesDataModel?
     
     private var questionFactory: QuestionFactoryProtocol?
-  
+    private var statisticService: StatisticService?
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -27,10 +28,11 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        statisticService = StatisticServiceImplementation()
         showLoader()
         questionFactory = QuestionFactory(delegateViewController: self, heroesLoader: HeroesLoader())
         questionFactory?.loadData()
-      
+        
         
     }
     //MARK: QuestionFactoryDelegate
@@ -51,8 +53,8 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
             message: "Что то пошло не так",
             buttonText: "Попробовать снова",
             completion: { [weak self] in
-            self?.questionFactory?.loadData()
-        })
+                self?.questionFactory?.loadData()
+            })
         let alertPresentor = AlertPresentror(viewController: self)
         alertPresentor.show(alertModel: alertModel)
     }
@@ -79,17 +81,34 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
     }
     
     private func showQuestionOrResult() {
-        if currentQuestionIndex >= questionAmount - 1{
-            let alertMessage = correctAnswer == questionAmount ? "Поздравляем, вы ответили на 10 из 10!" : "Ваш результат \(correctAnswer) / \(questionAmount)"
+        if currentQuestionIndex >= questionAmount - 1 {
+            statisticService?.store(correct: correctAnswer, total: questionAmount)
+            
+            guard let totalQuiz = statisticService?.gamesCount,
+                  let gameRecord = statisticService?.bestGame,
+                  let totalAccuracy = statisticService?.totalAccuracy
+            else {return}
+            
+            let dateFormater = DateFormatter()
+            dateFormater.dateFormat = "dd-MM-yyyy HH:mm"
+            let dateString = dateFormater.string(from: gameRecord.date)
+            
+            let alertMessage = """
+Ваш результат: \(correctAnswer) / \(questionAmount)
+Количество сыгранных квизов: \(totalQuiz)
+Рекорд: \(gameRecord.correct)/\(gameRecord.total) ( \(dateString) )
+Средняя точность: \(String(format: "%.2f", totalAccuracy))%"
+"""
+            
             let alertTitle = "Этот раунд окончен"
-           let alertModel = AlertModel(
-            title: alertTitle,
-            message: alertMessage,
-            buttonText: "Сыграть еще раз") { [weak self] in
-                self?.correctAnswer = 0
-                self?.currentQuestionIndex = 0
-                self?.questionFactory?.requestNextQuestion()
-            }
+            let alertModel = AlertModel(
+                title: alertTitle,
+                message: alertMessage,
+                buttonText: "Сыграть еще раз") { [weak self] in
+                    self?.correctAnswer = 0
+                    self?.currentQuestionIndex = 0
+                    self?.questionFactory?.requestNextQuestion()
+                }
             let alertPresentor = AlertPresentror(viewController: self)
             alertPresentor.show(alertModel: alertModel)
             
@@ -111,7 +130,7 @@ final class HeroesQuizViewController: UIViewController, QuestionFactoryDelegate 
             $0.isEnabled = false
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             guard let self = self else {return}
             self.buttonsCollection.forEach{
                 $0.isEnabled = true

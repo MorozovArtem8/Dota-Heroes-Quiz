@@ -2,7 +2,6 @@ import UIKit
 
 final class HeroesQuizPresenter: QuestionFactoryDelegate {
     
-    
     private var currentQuestionIndex = 0
     private let questionAmount = 10
     private var correctAnswers = 0
@@ -12,7 +11,7 @@ final class HeroesQuizPresenter: QuestionFactoryDelegate {
     private var questionFactory: QuestionFactoryProtocol?
     private var statisticService: StatisticService
     
-    weak var viewController: HeroesQuizViewController?
+    private weak var viewController: HeroesQuizViewController?
     
     init(viewController: HeroesQuizViewController) {
         self.statisticService = StatisticServiceImplementation()

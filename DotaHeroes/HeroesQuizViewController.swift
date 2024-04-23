@@ -2,12 +2,10 @@ import UIKit
 
 final class HeroesQuizViewController: UIViewController {
     
-    
-    
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private var buttonsCollection: [UIButton]!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private var presenter: HeroesQuizPresenter?
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC1FCD012BD8464700474273 /* DotaHeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1FCD002BD8464700474273 /* DotaHeroesTests.swift */; };
 		AC8271AF2BC2E48500246DD7 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8271AE2BC2E48500246DD7 /* AlertModel.swift */; };
 		AC8271B12BC2E4E400246DD7 /* AlertPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */; };
 		AC8AFB022BC278950069208D /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8AFB012BC278950069208D /* NetworkClient.swift */; };
@@ -32,7 +33,19 @@
 		ACDD5A602BC4400D00EF10C1 /* StatisticServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDD5A5F2BC4400D00EF10C1 /* StatisticServiceImplementation.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AC1FCD022BD8464700474273 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC9FC5782B9F0CF9006B2DC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC9FC57F2B9F0CF9006B2DC5;
+			remoteInfo = DotaHeroes;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		AC1FCCFE2BD8464700474273 /* DotaHeroesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaHeroesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC1FCD002BD8464700474273 /* DotaHeroesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaHeroesTests.swift; sourceTree = "<group>"; };
 		AC8271AE2BC2E48500246DD7 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentor.swift; sourceTree = "<group>"; };
 		AC8AFB012BC278950069208D /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
@@ -61,6 +74,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AC1FCCFB2BD8464700474273 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC9FC57D2B9F0CF9006B2DC5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC1FCCFF2BD8464700474273 /* DotaHeroesTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC1FCD002BD8464700474273 /* DotaHeroesTests.swift */,
+			);
+			path = DotaHeroesTests;
+			sourceTree = "<group>";
+		};
 		AC8AFAFF2BC26ED80069208D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +133,7 @@
 				AC8AFB002BC277B90069208D /* Services */,
 				AC8AFAFF2BC26ED80069208D /* Models */,
 				AC9FC5822B9F0CF9006B2DC5 /* DotaHeroes */,
+				AC1FCCFF2BD8464700474273 /* DotaHeroesTests */,
 				AC9FC5812B9F0CF9006B2DC5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				AC9FC5802B9F0CF9006B2DC5 /* DotaHeroes.app */,
+				AC1FCCFE2BD8464700474273 /* DotaHeroesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,6 +183,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AC1FCCFD2BD8464700474273 /* DotaHeroesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC1FCD062BD8464700474273 /* Build configuration list for PBXNativeTarget "DotaHeroesTests" */;
+			buildPhases = (
+				AC1FCCFA2BD8464700474273 /* Sources */,
+				AC1FCCFB2BD8464700474273 /* Frameworks */,
+				AC1FCCFC2BD8464700474273 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC1FCD032BD8464700474273 /* PBXTargetDependency */,
+			);
+			name = DotaHeroesTests;
+			productName = DotaHeroesTests;
+			productReference = AC1FCCFE2BD8464700474273 /* DotaHeroesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AC9FC57F2B9F0CF9006B2DC5 /* DotaHeroes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC9FC5942B9F0CFA006B2DC5 /* Build configuration list for PBXNativeTarget "DotaHeroes" */;
@@ -177,9 +225,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					AC1FCCFD2BD8464700474273 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = AC9FC57F2B9F0CF9006B2DC5;
+					};
 					AC9FC57F2B9F0CF9006B2DC5 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -199,11 +251,19 @@
 			projectRoot = "";
 			targets = (
 				AC9FC57F2B9F0CF9006B2DC5 /* DotaHeroes */,
+				AC1FCCFD2BD8464700474273 /* DotaHeroesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AC1FCCFC2BD8464700474273 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC9FC57E2B9F0CF9006B2DC5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -219,6 +279,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AC1FCCFA2BD8464700474273 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC1FCD012BD8464700474273 /* DotaHeroesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC9FC57C2B9F0CF9006B2DC5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,6 +314,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AC1FCD032BD8464700474273 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AC9FC57F2B9F0CF9006B2DC5 /* DotaHeroes */;
+			targetProxy = AC1FCD022BD8464700474273 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		AC9FC5892B9F0CF9006B2DC5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -266,6 +342,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AC1FCD042BD8464700474273 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D4R9788Y8X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.yandex.practicum.DotaHeroesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DotaHeroes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DotaHeroes";
+			};
+			name = Debug;
+		};
+		AC1FCD052BD8464700474273 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D4R9788Y8X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.yandex.practicum.DotaHeroesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DotaHeroes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DotaHeroes";
+			};
+			name = Release;
+		};
 		AC9FC5922B9F0CFA006B2DC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -454,6 +568,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AC1FCD062BD8464700474273 /* Build configuration list for PBXNativeTarget "DotaHeroesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC1FCD042BD8464700474273 /* Debug */,
+				AC1FCD052BD8464700474273 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AC9FC57B2B9F0CF9006B2DC5 /* Build configuration list for PBXProject "DotaHeroes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

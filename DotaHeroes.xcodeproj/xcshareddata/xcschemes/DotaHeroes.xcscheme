@@ -41,6 +41,39 @@
                ReferencedContainer = "container:DotaHeroes.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AC08D5682BD9981200CD2CAF"
+               BuildableName = "SaveGameRecordTest.xctest"
+               BlueprintName = "SaveGameRecordTest"
+               ReferencedContainer = "container:DotaHeroes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AC08D5762BD999DB00CD2CAF"
+               BuildableName = "SaveGamesCountTest.xctest"
+               BlueprintName = "SaveGamesCountTest"
+               ReferencedContainer = "container:DotaHeroes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AC08D5842BD9A29100CD2CAF"
+               BuildableName = "DotaHeroesUITests.xctest"
+               BlueprintName = "DotaHeroesUITests"
+               ReferencedContainer = "container:DotaHeroes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

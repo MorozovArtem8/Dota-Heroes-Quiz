@@ -1,7 +1,7 @@
 import XCTest
 @testable import DotaHeroes
 
-final class DotaHeroesTests: XCTestCase {
+final class HeroesNetworkTest: XCTestCase {
     
     func testSuccessLoading() throws {
         // Given

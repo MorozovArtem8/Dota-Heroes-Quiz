@@ -151,7 +151,6 @@
 				AC9FC59A2B9F0DFB006B2DC5 /* HeroesLoader.swift */,
 				AC8AFB052BC281820069208D /* QuestionFactoryDelegate.swift */,
 				AC8AFB092BC29A7B0069208D /* QuestionFactoryProtocol.swift */,
-				AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */,
 				ACDD5A5B2BC43EB000EF10C1 /* StatisticServiceProtocol.swift */,
 				ACDD5A5F2BC4400D00EF10C1 /* StatisticServiceImplementation.swift */,
 			);
@@ -183,6 +182,7 @@
 		AC9FC5822B9F0CF9006B2DC5 /* DotaHeroes */ = {
 			isa = PBXGroup;
 			children = (
+				AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */,
 				AC9FC5872B9F0CF9006B2DC5 /* HeroesQuizViewController.swift */,
 				AC9476142BD17EA1008B321C /* HeroesQuizPresenter.swift */,
 				AC9FC5892B9F0CF9006B2DC5 /* Main.storyboard */,

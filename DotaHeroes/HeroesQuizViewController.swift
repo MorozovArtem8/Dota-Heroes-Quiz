@@ -17,16 +17,16 @@ final class HeroesQuizViewController: UIViewController {
     }
     
     //MARK: IBAction
-    @IBAction func universalButtonTapped(_ sender: UIButton) {
+    @IBAction private func universalButtonTapped(_ sender: UIButton) {
         presenter?.universalButtonTapped()
     }
-    @IBAction func strengthButtonTapped(_ sender: UIButton) {
+    @IBAction private func strengthButtonTapped(_ sender: UIButton) {
         presenter?.strengthButtonTapped()
     }
-    @IBAction func agilityButtonTapped(_ sender: UIButton) {
+    @IBAction private func agilityButtonTapped(_ sender: UIButton) {
         presenter?.agilityButtonTapped()
     }
-    @IBAction func intellectButtonTapped(_ sender: UIButton) {
+    @IBAction private func intellectButtonTapped(_ sender: UIButton) {
         presenter?.intellectButtonTapped()
     }
     
@@ -90,12 +90,12 @@ final class HeroesQuizViewController: UIViewController {
     }
     
     
-    func showLoader() {
+    private func showLoader() {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
-    func hideLoader() {
+    private func hideLoader() {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
     }

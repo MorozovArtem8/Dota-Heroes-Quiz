@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class AlertPresentror {
+final class AlertPresenter {
     weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {
@@ -17,6 +17,7 @@ final class AlertPresentror {
             alertModel.completion()
         })
         alert.addAction(action)
+        alert.view.accessibilityIdentifier = "Alert"
         viewController?.present(alert, animated: true, completion: nil)
     }
 }

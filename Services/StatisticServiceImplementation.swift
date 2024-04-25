@@ -48,8 +48,6 @@ final class StatisticServiceImplementation: StatisticService {
         
         let totalCount = userDefaults.integer(forKey: Keys.correct.rawValue)
         let totalAmount = userDefaults.integer(forKey: Keys.total.rawValue)
-            
-            
         
         userDefaults.set(count + totalCount, forKey: Keys.correct.rawValue)
         userDefaults.set(amount + totalAmount, forKey: Keys.total.rawValue)

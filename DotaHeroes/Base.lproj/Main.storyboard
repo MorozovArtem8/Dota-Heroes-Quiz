@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,7 +22,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HeroesQuizViewController" customModule="DotaHeroes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EcW-2x-13C">
@@ -163,7 +162,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="deo-7I-V27">
-                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                                <rect key="frame" x="178" y="366" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -185,7 +184,9 @@
                             <constraint firstItem="deo-7I-V27" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zfR-QA-yac"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="gamecontroller" catalog="system" id="i73-0N-6ZT"/>
+                    <tabBarItem key="tabBarItem" title="" image="gamecontroller" catalog="system" id="i73-0N-6ZT">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="activityIndicator" destination="deo-7I-V27" id="Ua9-Vc-Wcf"/>
                         <outlet property="imageView" destination="nyJ-uM-kgX" id="kfv-Ck-Hgo"/>
@@ -205,12 +206,44 @@
             <objects>
                 <viewController id="0Nc-oe-yNh" customClass="HeroesListViewController" customModule="DotaHeroes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w4g-GA-mC4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Mze-TR-pft">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImagesListCell" id="8AI-gI-Tbz" customClass="TableViewCell" customModule="DotaHeroes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8AI-gI-Tbz" id="9c4-0N-XTU">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="0Nc-oe-yNh" id="Egs-No-y4l"/>
+                                    <outlet property="delegate" destination="0Nc-oe-yNh" id="iV8-O7-rVS"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="uyh-po-PZs"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                        <constraints>
+                            <constraint firstItem="Mze-TR-pft" firstAttribute="leading" secondItem="uyh-po-PZs" secondAttribute="leading" id="2eo-pY-gGS"/>
+                            <constraint firstItem="uyh-po-PZs" firstAttribute="bottom" secondItem="Mze-TR-pft" secondAttribute="bottom" id="FNJ-6n-gFR"/>
+                            <constraint firstItem="Mze-TR-pft" firstAttribute="top" secondItem="uyh-po-PZs" secondAttribute="top" id="QpC-H0-8YS"/>
+                            <constraint firstItem="uyh-po-PZs" firstAttribute="trailing" secondItem="Mze-TR-pft" secondAttribute="trailing" id="fTf-TT-4A4"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="list.bullet.clipboard" catalog="system" id="DRn-oV-wOv"/>
+                    <tabBarItem key="tabBarItem" title="" image="folder.fill.badge.questionmark.ar" catalog="system" id="DRn-oV-wOv">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYl-Ss-hDP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,10 +254,11 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hfG-wc-5CF" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="b3r-UE-4QF">
+                    <tabBar key="tabBar" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="b3r-UE-4QF">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" name="AccentColor"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                        <color key="barTintColor" name="YP Black"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="QA1-SR-EWH"/>
@@ -237,19 +271,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="folder.fill.badge.questionmark.ar" catalog="system" width="128" height="93"/>
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
-        <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="YP Black">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YP White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

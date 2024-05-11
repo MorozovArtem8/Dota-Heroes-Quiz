@@ -19,6 +19,8 @@ class QuestionFactory: QuestionFactoryProtocol {
                 case .success(let heroes):
                     self.heroesStat = heroes
                     self.delegateViewController?.didLoadDataFromServer()
+                    
+                    NotificationCenter.default.post(name: Notification.Name("DataNotification"), object: nil, userInfo: ["data": self.heroesStat]) // Отправляем загруженные данные
                 case .failure(let error):
                     self.delegateViewController?.didFailToLoadData(with: error)
                 }
@@ -55,5 +57,9 @@ class QuestionFactory: QuestionFactoryProtocol {
             }
             
         }
+    }
+    
+    func getHeroes() -> Heroes {
+        return heroesStat
     }
 }

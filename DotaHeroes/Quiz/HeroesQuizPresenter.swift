@@ -8,7 +8,7 @@ final class HeroesQuizPresenter: QuestionFactoryDelegate {
     
     private var currentQuestion: HeroesDataModel?
     
-    private var questionFactory: QuestionFactoryProtocol?
+    var questionFactory: QuestionFactoryProtocol?
     private var statisticService: StatisticService
     
     private weak var viewController: HeroesQuizViewController?
@@ -130,5 +130,6 @@ final class HeroesQuizPresenter: QuestionFactoryDelegate {
     func reloadingImage() {
         questionFactory?.requestNextQuestion()
     }
+    
     
 }

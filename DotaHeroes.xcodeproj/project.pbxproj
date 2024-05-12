@@ -11,6 +11,7 @@
 		AC08D5802BD999DF00CD2CAF /* SaveGamesCountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08D5792BD999DB00CD2CAF /* SaveGamesCountTest.swift */; };
 		AC08D5882BD9A29100CD2CAF /* DotaHeroesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08D5872BD9A29100CD2CAF /* DotaHeroesUITests.swift */; };
 		AC1FCD012BD8464700474273 /* HeroesNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1FCD002BD8464700474273 /* HeroesNetworkTest.swift */; };
+		AC3FEAE72BF1290000FF847E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FEAE62BF1290000FF847E /* Extension.swift */; };
 		AC6C12112BF0148F00F7E427 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6C12102BF0148F00F7E427 /* TableViewCell.swift */; };
 		AC8271AF2BC2E48500246DD7 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8271AE2BC2E48500246DD7 /* AlertModel.swift */; };
 		AC8271B12BC2E4E400246DD7 /* AlertPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */; };
@@ -19,7 +20,6 @@
 		AC8AFB062BC281820069208D /* QuestionFactoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8AFB052BC281820069208D /* QuestionFactoryDelegate.swift */; };
 		AC8AFB082BC284980069208D /* QuestionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8AFB072BC284980069208D /* QuestionFactory.swift */; };
 		AC8AFB0A2BC29A7B0069208D /* QuestionFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8AFB092BC29A7B0069208D /* QuestionFactoryProtocol.swift */; };
-		AC8CB3AD2BEFFD0800F10CB4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CB3AC2BEFFD0800F10CB4 /* TabBarController.swift */; };
 		AC8E949B2BD3056600598E9A /* QuizResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E949A2BD3056600598E9A /* QuizResultsViewModel.swift */; };
 		AC9476152BD17EA1008B321C /* HeroesQuizPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9476142BD17EA1008B321C /* HeroesQuizPresenter.swift */; };
 		AC9FC5842B9F0CF9006B2DC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FC5832B9F0CF9006B2DC5 /* AppDelegate.swift */; };
@@ -63,6 +63,7 @@
 		AC08D5872BD9A29100CD2CAF /* DotaHeroesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaHeroesUITests.swift; sourceTree = "<group>"; };
 		AC1FCCFE2BD8464700474273 /* DotaHeroesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaHeroesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC1FCD002BD8464700474273 /* HeroesNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesNetworkTest.swift; sourceTree = "<group>"; };
+		AC3FEAE62BF1290000FF847E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		AC6C12102BF0148F00F7E427 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		AC8271AE2BC2E48500246DD7 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		AC8271B02BC2E4E400246DD7 /* AlertPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentor.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		AC8AFB052BC281820069208D /* QuestionFactoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryDelegate.swift; sourceTree = "<group>"; };
 		AC8AFB072BC284980069208D /* QuestionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactory.swift; sourceTree = "<group>"; };
 		AC8AFB092BC29A7B0069208D /* QuestionFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryProtocol.swift; sourceTree = "<group>"; };
-		AC8CB3AC2BEFFD0800F10CB4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AC8E949A2BD3056600598E9A /* QuizResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewModel.swift; sourceTree = "<group>"; };
 		AC9476142BD17EA1008B321C /* HeroesQuizPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesQuizPresenter.swift; sourceTree = "<group>"; };
 		AC9FC5802B9F0CF9006B2DC5 /* DotaHeroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaHeroes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,8 +183,8 @@
 		AC8CB3AB2BEFFCBB00F10CB4 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
-				AC8CB3AC2BEFFD0800F10CB4 /* TabBarController.swift */,
 				AC6C12102BF0148F00F7E427 /* TableViewCell.swift */,
+				AC3FEAE62BF1290000FF847E /* Extension.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -400,6 +400,7 @@
 				AC9FC5982B9F0D73006B2DC5 /* HeroesDataApiModel.swift in Sources */,
 				AC9FC5882B9F0CF9006B2DC5 /* HeroesQuizViewController.swift in Sources */,
 				AC8AFB0A2BC29A7B0069208D /* QuestionFactoryProtocol.swift in Sources */,
+				AC3FEAE72BF1290000FF847E /* Extension.swift in Sources */,
 				AC9FC59B2B9F0DFB006B2DC5 /* HeroesLoader.swift in Sources */,
 				AC8271AF2BC2E48500246DD7 /* AlertModel.swift in Sources */,
 				AC8AFB042BC280FF0069208D /* QuizStepViewModel.swift in Sources */,
@@ -411,7 +412,6 @@
 				AC8271B12BC2E4E400246DD7 /* AlertPresentor.swift in Sources */,
 				AC6C12112BF0148F00F7E427 /* TableViewCell.swift in Sources */,
 				ACDD5A5E2BC43F1200EF10C1 /* GameRecord.swift in Sources */,
-				AC8CB3AD2BEFFD0800F10CB4 /* TabBarController.swift in Sources */,
 				AC8AFB062BC281820069208D /* QuestionFactoryDelegate.swift in Sources */,
 				AC9FC5842B9F0CF9006B2DC5 /* AppDelegate.swift in Sources */,
 				AC8AFB082BC284980069208D /* QuestionFactory.swift in Sources */,

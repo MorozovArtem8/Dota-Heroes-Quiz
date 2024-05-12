@@ -3,6 +3,8 @@ import Foundation
 protocol QuestionFactoryProtocol {
     func requestNextQuestion()
     func loadData()
-    func getHeroes() -> Heroes
 }
 
+protocol QuestionFactoryProtocolGet {
+    func getHeroes() -> Heroes
+}

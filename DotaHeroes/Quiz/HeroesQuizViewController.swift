@@ -100,8 +100,8 @@ final class HeroesQuizViewController: UIViewController {
         activityIndicator.stopAnimating()
     }
     
-    func passQuestionFactory() -> QuestionFactoryProtocol?{
-        presenter?.questionFactory
+    func passQuestionFactory() -> QuestionFactoryProtocolGet?{
+        presenter?.questionFactory as? QuestionFactoryProtocolGet
     }
     
 }

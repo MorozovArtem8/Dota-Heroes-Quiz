@@ -4,8 +4,10 @@ import UIKit
 
 class HeroesListViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     private var heroesStat = Heroes()
-    private var questionFactory: QuestionFactoryProtocol?
+    private var questionFactory: QuestionFactoryProtocolGet?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -16,6 +18,40 @@ class HeroesListViewController: UIViewController {
             print(heroesStat.count)
         }
         
+        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+        
+    }
+    
+    private func downloadImage(cell: TableViewCell, indexPath: IndexPath) {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            
+            var imageData = Data()
+            
+            do {
+                
+                if let heroesImageUrl = heroesStat[indexPath.row].imageURL {
+                    imageData = try Data(contentsOf: heroesImageUrl)
+                }
+                
+            } catch {
+                print("Не получилось")
+            }
+            
+            DispatchQueue.main.async {
+                if let image = UIImage(data: imageData) {
+                    cell.heroIconImageView.image = image.roundedImageWithBottomCorners(radius: 16)
+                }
+               
+            }
+        }
+    }
+    
+    private func configureCell(cell: TableViewCell, indexPath: IndexPath) {
+        cell.descriptionView.roundCorners(corners: [.topLeft, .topRight], radius: 16)
+        cell.heroNameLabel.text = heroesStat[indexPath.row].localizedName
+        cell.atributeImageView.image = UIImage(named: heroesStat[indexPath.row].primaryAttr.rawValue) ?? UIImage()
+        downloadImage(cell: cell, indexPath: indexPath)
     }
     
 
@@ -24,24 +60,26 @@ class HeroesListViewController: UIViewController {
 
 extension HeroesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heroesStat.count + 20
+        return heroesStat.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath)
         
-        if let reusedCell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier) {
-            cell = reusedCell as! TableViewCell
-        } else {
-            cell = TableViewCell(style: .default, reuseIdentifier: TableViewCell.reuseIdentifier)
+        guard let cell = cell as? TableViewCell else {
+            return UITableViewCell()
         }
-        
-        var content = cell.defaultContentConfiguration()
-        content.text = heroesStat[indexPath.row].localizedName
-        content.secondaryText = heroesStat[indexPath.row].roles.description
-        cell.contentConfiguration = content
+        configureCell(cell: cell, indexPath: indexPath)
         return cell
     }
     
     
+}
+
+extension HeroesListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+     
+        return 241
+        
+    }
 }

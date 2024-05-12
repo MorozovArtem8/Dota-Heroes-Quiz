@@ -1,6 +1,6 @@
 import UIKit
 
-class QuestionFactory: QuestionFactoryProtocol {
+class QuestionFactory: QuestionFactoryProtocol, QuestionFactoryProtocolGet{
     private weak var delegateViewController: QuestionFactoryDelegate?
     private let heroesLoader: HeroesLoader
     

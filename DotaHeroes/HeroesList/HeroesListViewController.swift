@@ -41,6 +41,7 @@ class HeroesListViewController: UIViewController {
             DispatchQueue.main.async {
                 if let image = UIImage(data: imageData) {
                     cell.heroIconImageView.image = image.roundedImageWithBottomCorners(radius: 16)
+                    cell.descriptionView.roundCorners(corners: [.topLeft, .topRight], radius: 16)
                 }
                
             }
@@ -48,9 +49,8 @@ class HeroesListViewController: UIViewController {
     }
     
     private func configureCell(cell: TableViewCell, indexPath: IndexPath) {
-        cell.descriptionView.roundCorners(corners: [.topLeft, .topRight], radius: 16)
         cell.heroNameLabel.text = heroesStat[indexPath.row].localizedName
-        cell.atributeImageView.image = UIImage(named: heroesStat[indexPath.row].primaryAttr.rawValue) ?? UIImage()
+        cell.atributeImageView.image = UIImage(named: "att_\(heroesStat[indexPath.row].primaryAttr.rawValue)") ?? UIImage()
         downloadImage(cell: cell, indexPath: indexPath)
     }
     
@@ -78,8 +78,13 @@ extension HeroesListViewController: UITableViewDataSource {
 
 extension HeroesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-     
-        return 241
+        let imageWidth: CGFloat = 256
+        let imageHeight: CGFloat = 144
+        let imageViewConstraints = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+        let imageViewWidth = tableView.bounds.width - imageViewConstraints.left - imageViewConstraints.right
+        let widthRatio = imageViewWidth / imageWidth
+        let imageViewHeight = widthRatio * imageHeight + 8
+        return imageViewHeight + 30
         
     }
 }

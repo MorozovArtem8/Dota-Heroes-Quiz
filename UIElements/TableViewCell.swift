@@ -23,7 +23,6 @@ final class TableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        heroIconImageView.image = UIImage()
     }
 
 }

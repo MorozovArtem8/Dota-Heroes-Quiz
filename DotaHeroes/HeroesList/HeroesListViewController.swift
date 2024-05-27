@@ -1,13 +1,12 @@
 import UIKit
 
-
-
 class HeroesListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
     private var heroesStat = Heroes()
     private var questionFactory: QuestionFactoryProtocolGet?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -15,11 +14,27 @@ class HeroesListViewController: UIViewController {
         if let controller1 = controllers as? HeroesQuizViewController {
             questionFactory = controller1.passQuestionFactory()
             heroesStat = questionFactory?.getHeroes() ?? Heroes()
-            print(heroesStat.count)
         }
         
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowCurrentHero" {
+            guard let currentHeroViewController = segue.destination as? CurrentHeroViewController,
+                  let indexPath = sender as? IndexPath 
+            else {
+                assertionFailure("Invalid segue destination")
+                return
+            }
+            
+            let currentCell = tableView.cellForRow(at: indexPath) as? TableViewCell
+            let image = currentCell?.heroIconImageView.image
+            currentHeroViewController.image = image
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
     
     private func downloadImage(cell: TableViewCell, indexPath: IndexPath) {
@@ -77,6 +92,11 @@ extension HeroesListViewController: UITableViewDataSource {
 }
 
 extension HeroesListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowCurrentHero", sender: indexPath)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let imageWidth: CGFloat = 256
         let imageHeight: CGFloat = 144

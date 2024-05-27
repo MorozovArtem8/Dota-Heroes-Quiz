@@ -11,6 +11,7 @@
 		AC08D5802BD999DF00CD2CAF /* SaveGamesCountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08D5792BD999DB00CD2CAF /* SaveGamesCountTest.swift */; };
 		AC08D5882BD9A29100CD2CAF /* DotaHeroesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08D5872BD9A29100CD2CAF /* DotaHeroesUITests.swift */; };
 		AC1FCD012BD8464700474273 /* HeroesNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1FCD002BD8464700474273 /* HeroesNetworkTest.swift */; };
+		AC21C7DB2C05021900752008 /* CurrentHeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21C7DA2C05021900752008 /* CurrentHeroViewController.swift */; };
 		AC3FEAE72BF1290000FF847E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FEAE62BF1290000FF847E /* Extension.swift */; };
 		AC6C12112BF0148F00F7E427 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6C12102BF0148F00F7E427 /* TableViewCell.swift */; };
 		AC8271AF2BC2E48500246DD7 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8271AE2BC2E48500246DD7 /* AlertModel.swift */; };
@@ -63,6 +64,7 @@
 		AC08D5872BD9A29100CD2CAF /* DotaHeroesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaHeroesUITests.swift; sourceTree = "<group>"; };
 		AC1FCCFE2BD8464700474273 /* DotaHeroesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaHeroesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC1FCD002BD8464700474273 /* HeroesNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesNetworkTest.swift; sourceTree = "<group>"; };
+		AC21C7DA2C05021900752008 /* CurrentHeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentHeroViewController.swift; sourceTree = "<group>"; };
 		AC3FEAE62BF1290000FF847E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		AC6C12102BF0148F00F7E427 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		AC8271AE2BC2E48500246DD7 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				ACA402DF2BEF958A00DC2F25 /* HeroesListViewController.swift */,
+				AC21C7DA2C05021900752008 /* CurrentHeroViewController.swift */,
 			);
 			path = HeroesList;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				AC8271AF2BC2E48500246DD7 /* AlertModel.swift in Sources */,
 				AC8AFB042BC280FF0069208D /* QuizStepViewModel.swift in Sources */,
 				AC9FC59D2B9F0EBB006B2DC5 /* HeroesDataModel.swift in Sources */,
+				AC21C7DB2C05021900752008 /* CurrentHeroViewController.swift in Sources */,
 				AC9476152BD17EA1008B321C /* HeroesQuizPresenter.swift in Sources */,
 				AC8AFB022BC278950069208D /* NetworkClient.swift in Sources */,
 				ACA402E02BEF958A00DC2F25 /* HeroesListViewController.swift in Sources */,

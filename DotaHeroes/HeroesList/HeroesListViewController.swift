@@ -55,7 +55,8 @@ class HeroesListViewController: UIViewController {
             
             DispatchQueue.main.async {
                 if let image = UIImage(data: imageData) {
-                    cell.heroIconImageView.image = image.roundedImageWithBottomCorners(radius: 16)
+                    cell.heroIconImageView.image = image//.roundedImageWithBottomCorners(radius: 16)
+                    cell.heroIconImageView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 16)
                     cell.descriptionView.roundCorners(corners: [.topLeft, .topRight], radius: 16)
                 }
                

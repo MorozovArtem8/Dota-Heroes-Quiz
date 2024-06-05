@@ -210,7 +210,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Mze-TR-pft">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                                 <color key="backgroundColor" name="YP Black"/>
                                 <color key="sectionIndexBackgroundColor" name="YP Black"/>
                                 <prototypes>
@@ -247,6 +247,7 @@
                                                                 <constraint firstItem="Svu-43-v1c" firstAttribute="centerY" secondItem="HMO-Tw-TyQ" secondAttribute="centerY" id="9qf-iH-esa"/>
                                                                 <constraint firstItem="Svu-43-v1c" firstAttribute="top" secondItem="lb2-dV-3NA" secondAttribute="top" id="DX5-Rg-2i1"/>
                                                                 <constraint firstAttribute="height" constant="30" id="NNC-XS-fZJ"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lb2-dV-3NA" secondAttribute="trailing" constant="20" symbolic="YES" id="adZ-WR-a9n"/>
                                                                 <constraint firstItem="Svu-43-v1c" firstAttribute="leading" secondItem="HMO-Tw-TyQ" secondAttribute="leading" constant="10" id="kVi-bc-xvG"/>
                                                             </constraints>
                                                         </view>
@@ -310,7 +311,7 @@
                         <constraints>
                             <constraint firstItem="Mze-TR-pft" firstAttribute="leading" secondItem="uyh-po-PZs" secondAttribute="leading" id="2eo-pY-gGS"/>
                             <constraint firstItem="uyh-po-PZs" firstAttribute="bottom" secondItem="Mze-TR-pft" secondAttribute="bottom" id="FNJ-6n-gFR"/>
-                            <constraint firstItem="Mze-TR-pft" firstAttribute="top" secondItem="uyh-po-PZs" secondAttribute="top" id="QpC-H0-8YS"/>
+                            <constraint firstItem="Mze-TR-pft" firstAttribute="top" secondItem="w4g-GA-mC4" secondAttribute="top" id="QpC-H0-8YS"/>
                             <constraint firstItem="uyh-po-PZs" firstAttribute="trailing" secondItem="Mze-TR-pft" secondAttribute="trailing" id="fTf-TT-4A4"/>
                         </constraints>
                     </view>
@@ -333,39 +334,9 @@
                     <view key="view" contentMode="scaleToFill" id="7HU-XF-0zG">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ny-dp-46A">
-                                <rect key="frame" x="8" y="8" width="48" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="4n2-hn-cSh"/>
-                                    <constraint firstAttribute="height" constant="48" id="S8g-hs-si6"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Backward"/>
-                                <connections>
-                                    <action selector="didTapBackButton" destination="hcL-ZN-Z3F" eventType="touchUpInside" id="vPr-yC-5pT"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y4m-yp-vgo">
-                                <rect key="frame" x="16" y="131" width="361" height="234"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="361" id="B38-Ie-g3e"/>
-                                    <constraint firstAttribute="height" constant="234" id="XPE-fM-Qwt"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="m13-TO-k0O"/>
                         <color key="backgroundColor" name="YP Black"/>
-                        <constraints>
-                            <constraint firstItem="y4m-yp-vgo" firstAttribute="leading" secondItem="m13-TO-k0O" secondAttribute="leading" constant="16" id="MkU-wD-PsX"/>
-                            <constraint firstItem="y4m-yp-vgo" firstAttribute="top" secondItem="1ny-dp-46A" secondAttribute="bottom" constant="75" id="eit-W2-56O"/>
-                            <constraint firstItem="1ny-dp-46A" firstAttribute="leading" secondItem="m13-TO-k0O" secondAttribute="leading" constant="8" id="mbX-xs-N5X"/>
-                            <constraint firstItem="1ny-dp-46A" firstAttribute="top" secondItem="m13-TO-k0O" secondAttribute="top" constant="8" id="pgp-As-2fj"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="imageView" destination="y4m-yp-vgo" id="Nxb-iI-er9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9d-xy-XqH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -395,7 +366,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Backward" width="24" height="24"/>
         <image name="tabBar_List" width="30" height="30"/>
         <image name="tabBar_Quiz" width="30" height="30"/>
         <namedColor name="YP Background">

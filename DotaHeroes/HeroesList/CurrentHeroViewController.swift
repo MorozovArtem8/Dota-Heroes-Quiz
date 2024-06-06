@@ -1,5 +1,11 @@
 import UIKit
 
+protocol HeroesInfoFactoryDelegate: AnyObject {
+    func didLoadDataFromServer(heroInfo: CurrentHeroInfo)
+    func didFailToLoadData(with error: Error)
+    func didFailToLoadImage(with error: Error)
+}
+
 class CurrentHeroViewController: UIViewController {
     
     //MARK: View
@@ -9,6 +15,10 @@ class CurrentHeroViewController: UIViewController {
     private let imageHero = UIImageView()
     private let backButton = UIButton()
     
+    
+    private var heroInfoStat: Hero?
+    private var heroesInfoFactory: HeroesInfoFactoryProtocol?
+    var heroId: String?
     var image: UIImage? {
         didSet {
             guard isViewLoaded else {return}
@@ -19,11 +29,73 @@ class CurrentHeroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        guard let heroId = heroId else {return}
+        print(heroId)
+        heroesInfoFactory = HeroesInfoFactory(heroId: heroId, delegateViewController: self)
+        heroesInfoFactory?.loadData()
+        
     }
     
     @objc private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
     }
+    
+    func updateScrollView() {
+        guard let abilities = heroInfoStat?.abilities else {return}
+        var previousView: UIView?
+        
+        for (index, ability) in abilities.enumerated() {
+            
+           
+            print(ability.nameLoc)
+            let abilityView = UIView()
+            abilityView.backgroundColor = .lightGray
+            abilityView.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(abilityView)
+            
+            NSLayoutConstraint.activate([
+                abilityView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+                abilityView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+                abilityView.heightAnchor.constraint(equalToConstant: 80)
+            ])
+            
+            if let previousView = previousView {
+                NSLayoutConstraint.activate([
+                    abilityView.topAnchor.constraint(equalTo: previousView.bottomAnchor, constant: 10)
+                ])
+            } else {
+                abilityView.topAnchor.constraint(equalTo: imageHero.bottomAnchor, constant: 10).isActive = true
+            }
+            
+            previousView = abilityView
+            
+            if index == abilities.count - 1 {
+                abilityView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true // приравниваем последний элемент к концу contentView
+            }
+        }
+    }
+    
+}
+
+//MARK: HeroesInfoFactoryDelegate func
+extension CurrentHeroViewController: HeroesInfoFactoryDelegate {
+    func didLoadDataFromServer(heroInfo: CurrentHeroInfo) {
+        self.heroInfoStat = heroInfo.result.data.heroes.first
+        guard let name = heroInfoStat?.nameLoc else {return}
+        label.text = name
+        updateScrollView()
+        
+    }
+    
+    
+    func didFailToLoadData(with error: any Error) {
+        
+    }
+    
+    func didFailToLoadImage(with error: any Error) {
+        
+    }
+    
     
 }
 
@@ -38,11 +110,11 @@ private extension CurrentHeroViewController {
         
     }
     
-   func configureScrollView() {
-       scrollView.translatesAutoresizingMaskIntoConstraints = false
-       scrollView.showsVerticalScrollIndicator = true
-       scrollView.alwaysBounceVertical = true
-       view.addSubview(scrollView)
+    func configureScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
     }
     
     func configureContentView() {

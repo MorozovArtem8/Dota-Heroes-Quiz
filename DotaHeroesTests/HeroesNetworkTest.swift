@@ -81,7 +81,7 @@ final class HeroesNetworkTest: XCTestCase {
     
     
     
-    struct StubNetworkClient: NetworkRouting {
+    struct StubNetworkClient: NetworkRoutingFetch {
         
         enum TestError: Error {
             case test

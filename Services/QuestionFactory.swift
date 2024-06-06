@@ -1,5 +1,14 @@
 import UIKit
 
+protocol QuestionFactoryProtocol {
+    func requestNextQuestion()
+    func loadData()
+}
+
+protocol QuestionFactoryProtocolGet {
+    func getHeroes() -> Heroes
+}
+
 class QuestionFactory: QuestionFactoryProtocol, QuestionFactoryProtocolGet{
     private weak var delegateViewController: QuestionFactoryDelegate?
     private let heroesLoader: HeroesLoader
@@ -20,7 +29,6 @@ class QuestionFactory: QuestionFactoryProtocol, QuestionFactoryProtocolGet{
                     self.heroesStat = heroes
                     self.delegateViewController?.didLoadDataFromServer()
                     
-                    NotificationCenter.default.post(name: Notification.Name("DataNotification"), object: nil, userInfo: ["data": self.heroesStat]) // Отправляем загруженные данные
                 case .failure(let error):
                     self.delegateViewController?.didFailToLoadData(with: error)
                 }

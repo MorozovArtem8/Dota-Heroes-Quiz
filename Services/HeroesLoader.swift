@@ -2,9 +2,9 @@ import UIKit
 
 struct HeroesLoader {
     
-    private let networkClient: NetworkRouting
+    private let networkClient: NetworkRoutingFetch
     
-    init(networkClient: NetworkRouting = NetworkClient()) {
+    init(networkClient: NetworkRoutingFetch = NetworkClient()) {
         self.networkClient = networkClient
     }
     

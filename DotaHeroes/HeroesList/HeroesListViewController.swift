@@ -4,6 +4,7 @@ class HeroesListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    private var clickedСell = 0
     private var heroesStat = Heroes()
     private var questionFactory: QuestionFactoryProtocolGet?
     private let imageCache = NSCache<NSString, UIImage>()
@@ -29,7 +30,7 @@ class HeroesListViewController: UIViewController {
                 assertionFailure("Invalid segue destination")
                 return
             }
-            
+            currentHeroViewController.heroId = String(clickedСell)
             let currentCell = tableView.cellForRow(at: indexPath) as? TableViewCell
             let image = currentCell?.heroIconImageView.image
             currentHeroViewController.image = image
@@ -82,6 +83,10 @@ class HeroesListViewController: UIViewController {
         downloadImage(cell: cell, indexPath: indexPath)
     }
     
+    private func makeRequestForCurrentHero() {
+        
+    }
+    
 
 
 }
@@ -107,6 +112,7 @@ extension HeroesListViewController: UITableViewDataSource {
 extension HeroesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        clickedСell = heroesStat[indexPath.row].id
         performSegue(withIdentifier: "ShowCurrentHero", sender: indexPath)
     }
     

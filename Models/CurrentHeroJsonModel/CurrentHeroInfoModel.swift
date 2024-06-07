@@ -16,11 +16,13 @@ struct CurrentHeroInfo: Decodable {
 struct Hero: Decodable {
     let id: Int
     let nameLoc: String
+    let bioLoc: String
     let abilities: [Abilities]
     
     enum CodingKeys: String, CodingKey {
             case id
             case nameLoc = "name_loc"
+            case bioLoc = "bio_loc"
             case abilities
         }
 }

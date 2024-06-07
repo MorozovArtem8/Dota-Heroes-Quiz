@@ -21,7 +21,7 @@ struct HeroInfoLoader {
     
     func loadHeroInfo(heroId: String, handler: @escaping (Result<CurrentHeroInfo, Error>) -> Void) {
         guard let request = loadCurrentHeroInfo(heroId: heroId) else {return}
-        networkClient.fetchForRequest(request: request) { result in
+        networkClient.fetch(request: request) { result in
             switch result {
             case .success(let data):
                 do{

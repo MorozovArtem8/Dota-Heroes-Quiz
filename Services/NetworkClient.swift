@@ -5,7 +5,7 @@ protocol NetworkRoutingFetch {
 }
 
 protocol NetworkRoutingFetchForRequest {
-    func fetchForRequest(request: URLRequest, handler: @escaping (Result <Data, Error>) -> Void)
+    func fetch(request: URLRequest, handler: @escaping (Result <Data, Error>) -> Void)
 }
 
 struct NetworkClient: NetworkRoutingFetch, NetworkRoutingFetchForRequest {
@@ -35,7 +35,7 @@ struct NetworkClient: NetworkRoutingFetch, NetworkRoutingFetchForRequest {
         task.resume()
     }
     
-    func fetchForRequest(request: URLRequest, handler: @escaping (Result <Data, Error>) -> Void) {
+    func fetch(request: URLRequest, handler: @escaping (Result <Data, Error>) -> Void) {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {

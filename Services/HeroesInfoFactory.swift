@@ -1,8 +1,8 @@
-import Foundation
+import UIKit
 
 protocol HeroesInfoFactoryProtocol: AnyObject {
     func loadData()
-    
+    func loadAbilitiesIcon(iconName: String, abilitiesView: UIImageView)
 }
 
 class HeroesInfoFactory: HeroesInfoFactoryProtocol {
@@ -32,6 +32,28 @@ class HeroesInfoFactory: HeroesInfoFactoryProtocol {
                 
             }
         }
+    }
+    
+    func loadAbilitiesIcon(iconName: String, abilitiesView: UIImageView) {
+        DispatchQueue.global().async {
+            guard let url = URL(string: "https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/abilities/\(iconName).png") else {return}
+            
+            var imageData = Data()
+            
+            do {
+                imageData = try Data(contentsOf: url)
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegateViewController?.didFailToLoadImage(with: error)
+                    return
+                }
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.delegateViewController?.didLoadImageFromServer(imageData: imageData, abilitiesView: abilitiesView)
+            }
+        }
+        
     }
     
     

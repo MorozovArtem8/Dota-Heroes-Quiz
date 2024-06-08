@@ -2,6 +2,7 @@ import UIKit
 
 protocol HeroesInfoFactoryDelegate: AnyObject {
     func didLoadDataFromServer(heroInfo: CurrentHeroInfo)
+    func didLoadImageFromServer(imageData: Data, abilitiesView: UIImageView)
     func didFailToLoadData(with error: Error)
     func didFailToLoadImage(with error: Error)
 }
@@ -49,9 +50,12 @@ class CurrentHeroViewController: UIViewController {
         
         for (index, ability) in abilities.enumerated() {
             
-           
+            
             print(ability.nameLoc)
             let abilityView = UIView()
+            
+            
+            
             abilityView.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1843137255, blue: 0.2196078431, alpha: 1)
             abilityView.layer.cornerRadius = 10
             abilityView.clipsToBounds = true
@@ -86,6 +90,10 @@ class CurrentHeroViewController: UIViewController {
         guard let image = UIImage(named: "dota_icon") else {return}
         let imageView = UIImageView()
         imageView.image = image
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
+        guard let iconName = heroInfoStat?.abilities[index].name else {return}
+        heroesInfoFactory?.loadAbilitiesIcon(iconName: iconName, abilitiesView: imageView)
         
         let nameAbilityLabel = UILabel()
         nameAbilityLabel.textColor = .white
@@ -101,6 +109,7 @@ class CurrentHeroViewController: UIViewController {
         textView.text = heroInfoStat?.abilities[index].descLoc
         textView.isEditable = false
         textView.isScrollEnabled = false
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 4, bottom: 10, right: 4)
         textView.translatesAutoresizingMaskIntoConstraints = false
         abilityView.addSubview(textView)
         
@@ -108,8 +117,8 @@ class CurrentHeroViewController: UIViewController {
         abilityView.addSubview(imageView)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: abilityView.topAnchor, constant: 4),
-            imageView.leadingAnchor.constraint(equalTo: abilityView.leadingAnchor, constant: 4),
+            imageView.topAnchor.constraint(equalTo: abilityView.topAnchor, constant: 8),
+            imageView.leadingAnchor.constraint(equalTo: abilityView.leadingAnchor, constant: 8),
             //imageView.bottomAnchor.constraint(equalTo: abilityView.bottomAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 75),
             imageView.widthAnchor.constraint(equalToConstant: 75),
@@ -122,7 +131,6 @@ class CurrentHeroViewController: UIViewController {
             textView.leadingAnchor.constraint(equalTo: abilityView.leadingAnchor),
             textView.trailingAnchor.constraint(equalTo: abilityView.trailingAnchor),
             textView.bottomAnchor.constraint(equalTo: abilityView.bottomAnchor)
-           
         ])
         
     }
@@ -142,18 +150,26 @@ class CurrentHeroViewController: UIViewController {
         
     }
     
+    
 }
 
 //MARK: HeroesInfoFactoryDelegate func
 extension CurrentHeroViewController: HeroesInfoFactoryDelegate {
     func didLoadDataFromServer(heroInfo: CurrentHeroInfo) {
         activityIndicator.stopAnimating()
+        
         self.heroInfoStat = heroInfo.result.data.heroes.first
         guard let name = heroInfoStat?.nameLoc else {return}
+        guard let image = image else {return}
+        imageHero.image = image
         heroNameLabel.text = name
         configureTextViewInfoHero()
         addAbilityForContentView()
         
+    }
+    func didLoadImageFromServer(imageData: Data, abilitiesView: UIImageView) {
+        guard let image = UIImage(data: imageData) else {return}
+        abilitiesView.image = image
     }
     
     
@@ -176,6 +192,7 @@ private extension CurrentHeroViewController {
         prepareScrollView()
         configureHeroNameLabel()
         addContentToScrollView()
+        configureImageView()
         configureBackButton()
         configureActivityIndicator()
         
@@ -207,7 +224,7 @@ private extension CurrentHeroViewController {
         imageHero.layer.cornerRadius = 15
         imageHero.clipsToBounds = true
         
-        imageHero.image = image
+        
         
         imageHero.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageHero)
@@ -260,7 +277,6 @@ private extension CurrentHeroViewController {
             heroNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
             //label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor), // приравниваем последний элемент к концу contentView
         ])
-        configureImageView()
     }
     
     func prepareScrollView() {
